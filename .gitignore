@@ -1,0 +1,18 @@
+# MATLAB local and generated files
+*.asv
+*.autosave
+*.mex*
+*.fig
+slprj/
+codegen/
+
+# Simulation outputs
+simulation/*.jpg
+simulation/*.png
+simulation/*.mat
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
