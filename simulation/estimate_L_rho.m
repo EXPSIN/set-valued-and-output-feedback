@@ -111,10 +111,7 @@ end
 function v_ref = rho_map(y, v_c, circle_center, circle_radius, triangle_vertices, config, A_L, c_A, opt)
 lidar = simulation_utils('lidar_feedback', y, circle_center, circle_radius, triangle_vertices, config.lidar, 0);
 
-% Construct rho_s directly from the nearest LiDAR distance and direction;
-% no optimization problem is needed for this practical nearest-beam rho_s.
-% Unique minimizers agree with the convex-hull definition on the same scan;
-% ties are resolved by the first index, as in simulation_utils (see README).
+% Practical construction of rho_s from the nearest LiDAR distance and direction.
 [r_min, min_idx] = min(lidar.r);
 l_min = lidar.l(:, min_idx);
 rho_s = config.safety.k_alpha*l_min*min(r_min-config.plant.Ds, 0);

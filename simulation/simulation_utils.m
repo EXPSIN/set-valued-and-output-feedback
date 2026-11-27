@@ -1073,11 +1073,7 @@ end
 
 
 function [rho_s, min_idx] = gen_rho_s_from_feedback(lidar, params)
-% Practical nearest-beam construction on the sampled scan. MATLAB min chooses
-% the first index when ranges tie. For a unique minimizing direction this is
-% exactly the paper's minimum-norm convex-hull construction on the SAME scan.
-% Ties can give different values; range clipping can create ties under noise.
-% See README.md for the almost-everywhere qualification and angular sampling.
+% Practical construction of rho_s from the nearest LiDAR distance and direction.
 [r_min, min_idx] = min(lidar.r);
 l_min = lidar.l(:, min_idx);
 rho_s = params.k_alpha*l_min*min(r_min-params.D_s, 0);
